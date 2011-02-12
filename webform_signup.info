@@ -1,0 +1,15 @@
+; $Id: $
+name = Webform Signup
+description = Sign-up functionality implemented via Webform
+core = 7.x
+version = "7.x-1.x-dev"
+
+package = Webform
+dependencies[] = webform
+dependencies[] = date
+
+configure = admin/config/content/webform/signup
+
+; Files that contain classes:
+files[] = webform_signup.module
+files[] = webform_signup.admin.inc

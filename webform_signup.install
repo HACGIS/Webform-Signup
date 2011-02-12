@@ -1,0 +1,20 @@
+<?php
+function webform_signup_install(){
+  module_load_include('field.inc', 'webform_signup');
+	$field = field_read_field('webform_signup_date');
+	if (false == $field) {
+	  field_create_field(_webform_signup_date_field());
+	}
+}
+
+function webform_signup_uninstall(){
+  module_load_include('field.inc', 'webform_signup');
+  $node_types = node_type_get_names();
+	foreach ($node_types as $type => $name) {
+		_webform_signup_delete_instance('webform_signup_date', $type);
+	}
+  field_delete_field('webform_signup_date');
+	field_purge_batch(PHP_INT_MAX);
+  variable_del('webform_signup_node_types');
+}
+
